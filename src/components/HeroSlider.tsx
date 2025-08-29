@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Award, CheckCircle } from 'lucide-react';
+import ProductGallery from './ProductGallery';
 
 interface SlideData {
   id: number;
@@ -83,6 +84,7 @@ const slides: SlideData[] = kkImages.map((image, index) => ({
 const HeroSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -119,13 +121,14 @@ const HeroSlider: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Clean Auto Slider Section - Optimized Position */}
           <div className="relative w-full mb-6 sm:mb-8 lg:mb-10">
-            <div className="relative rounded-lg lg:rounded-xl xl:rounded-2xl overflow-hidden shadow-md lg:shadow-xl xl:shadow-2xl w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto bg-gray-50 lg:bg-white border lg:border-gray-200">
+            <div className="relative rounded-lg lg:rounded-xl xl:rounded-2xl overflow-hidden shadow-md lg:shadow-xl xl:shadow-2xl w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto bg-gray-50 lg:bg-white border lg:border-gray-200 group cursor-pointer"
+                 onClick={() => setIsGalleryOpen(true)}>
               {/* Simple Image Container */}
               <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[400px] xl:h-[480px] 2xl:h-[560px]">
                 <img 
                   src={currentSlideData.image}
                   alt={currentSlideData.title}
-                  className="w-full h-full object-contain lg:object-cover xl:object-contain transition-opacity duration-500"
+                  className="w-full h-full object-contain lg:object-cover xl:object-contain transition-all duration-500 group-hover:scale-105"
                   style={{
                     objectPosition: 'center center',
                     imageRendering: 'high-quality',
@@ -133,6 +136,13 @@ const HeroSlider: React.FC = () => {
                   loading="eager"
                   decoding="async"
                 />
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                    <p className="text-gray-900 font-medium text-sm lg:text-base">View Product Gallery</p>
+                  </div>
+                </div>
               </div>
               
               {/* Simple Progress Indicator */}
@@ -205,6 +215,12 @@ const HeroSlider: React.FC = () => {
           {currentSlide + 1} / {slides.length}
         </span>
       </div>
+
+      {/* Product Gallery Modal */}
+      <ProductGallery 
+        isOpen={isGalleryOpen} 
+        onClose={() => setIsGalleryOpen(false)} 
+      />
     </section>
   );
 };

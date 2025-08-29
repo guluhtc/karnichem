@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Factory, ChevronRight, Beaker, Paintbrush, FileText, Pill } from 'lucide-react';
+import ProductGallery from './ProductGallery';
 
 const Products: React.FC = () => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const products = [
     {
       icon: Beaker,
@@ -9,7 +11,8 @@ const Products: React.FC = () => {
       description: 'Oral care grade with controlled particle size and high purity for toothpaste and dental care products.',
       features: ['Controlled Particle Size', 'High Purity', 'FDA Approved', 'Excellent Abrasion'],
       color: 'bg-red-100 text-red-600',
-      borderColor: 'border-red-200 hover:border-red-300'
+      borderColor: 'border-red-200 hover:border-red-300',
+      image: '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg'
     },
     {
       icon: Factory,
@@ -17,7 +20,8 @@ const Products: React.FC = () => {
       description: 'High whiteness grade that improves cleaning performance and acts as an excellent filler.',
       features: ['High Whiteness', 'Superior Cleaning', 'Cost Effective', 'Eco-Friendly'],
       color: 'bg-green-100 text-green-600',
-      borderColor: 'border-green-200 hover:border-green-300'
+      borderColor: 'border-green-200 hover:border-green-300',
+      image: '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg'
     },
     {
       icon: Pill,
@@ -25,7 +29,8 @@ const Products: React.FC = () => {
       description: 'Food additive and pharmaceutical excipient grade with strict quality controls.',
       features: ['USP Grade', 'Food Safe', 'GMP Certified', 'Heavy Metal Free'],
       color: 'bg-red-100 text-red-600',
-      borderColor: 'border-red-200 hover:border-red-300'
+      borderColor: 'border-red-200 hover:border-red-300',
+      image: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg'
     },
     {
       icon: FileText,
@@ -33,7 +38,8 @@ const Products: React.FC = () => {
       description: 'Enhances brightness and opacity for paper manufacturing and paint coating applications.',
       features: ['High Brightness', 'Excellent Opacity', 'Improved Printability', 'Cost Reduction'],
       color: 'bg-green-100 text-green-600',
-      borderColor: 'border-green-200 hover:border-green-300'
+      borderColor: 'border-green-200 hover:border-green-300',
+      image: '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg'
     },
     {
       icon: Paintbrush,
@@ -41,7 +47,8 @@ const Products: React.FC = () => {
       description: 'Specially designed for paint and coating applications with optimal particle distribution.',
       features: ['Uniform Particles', 'Weather Resistant', 'Enhanced Durability', 'Color Stability'],
       color: 'bg-red-100 text-red-600',
-      borderColor: 'border-red-200 hover:border-red-300'
+      borderColor: 'border-red-200 hover:border-red-300',
+      image: '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg'
     },
     {
       icon: Factory,
@@ -49,7 +56,8 @@ const Products: React.FC = () => {
       description: 'High-performance grade for rubber and plastic applications with excellent reinforcement.',
       features: ['High Reinforcement', 'Improved Tensile', 'Weather Stability', 'Processing Aid'],
       color: 'bg-green-100 text-green-600',
-      borderColor: 'border-green-200 hover:border-green-300'
+      borderColor: 'border-green-200 hover:border-green-300',
+      image: '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg'
     }
   ];
 
@@ -82,32 +90,59 @@ const Products: React.FC = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
           {products.map((product, index) => (
-            <div key={index} className={`bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl border-2 ${product.borderColor} transition-all duration-300 hover:shadow-xl hover:scale-105 group`}>
-              <div className={`${product.color} w-12 h-12 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <product.icon className="w-6 h-6 sm:w-8 sm:h-8" />
+            <div key={index} className={`bg-white rounded-xl sm:rounded-2xl border-2 ${product.borderColor} transition-all duration-300 hover:shadow-xl hover:scale-105 group overflow-hidden`}>
+              {/* Product Image */}
+              <div className="relative h-48 sm:h-56 overflow-hidden">
+                <img 
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                
+                {/* Floating Icon */}
+                <div className={`absolute top-4 right-4 ${product.color} w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <product.icon className="w-6 h-6 sm:w-7 sm:h-7" />
+                </div>
+                
+                {/* Product Category Badge */}
+                <div className="absolute bottom-4 left-4">
+                  <span className="bg-white/90 backdrop-blur-sm text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                    PCC Grade
+                  </span>
+                </div>
               </div>
               
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">
-                {product.title}
-              </h3>
-              
-              <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                {product.description}
-              </p>
-              
-              <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
-                {product.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-center text-xs sm:text-sm">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full mr-2 sm:mr-3 flex-shrink-0"></div>
-                    <span className="text-gray-700">{feature}</span>
-                  </div>
-                ))}
+              {/* Content Section */}
+              <div className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">
+                  {product.title}
+                </h3>
+                
+                <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                  {product.description}
+                </p>
+                
+                <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                  {product.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center text-xs sm:text-sm">
+                      <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full mr-2 sm:mr-3 flex-shrink-0 ${
+                        index % 2 === 0 ? 'bg-red-500' : 'bg-green-500'
+                      }`}></div>
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <button className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 inline-flex items-center justify-center text-sm sm:text-base ${
+                  index % 2 === 0 
+                    ? 'bg-red-50 hover:bg-red-100 text-red-700 group-hover:bg-red-600 group-hover:text-white' 
+                    : 'bg-green-50 hover:bg-green-100 text-green-700 group-hover:bg-green-600 group-hover:text-white'
+                }`}>
+                  Learn More
+                  <ChevronRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
               </div>
-              
-              <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-900 py-3 px-4 rounded-lg font-medium transition-colors inline-flex items-center justify-center group-hover:bg-red-50 group-hover:text-red-600 text-sm sm:text-base">
-                Learn More
-                <ChevronRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
             </div>
           ))}
         </div>
@@ -136,7 +171,7 @@ const Products: React.FC = () => {
             
             <div className="relative">
               <img 
-                src="https://images.pexels.com/photos/3735747/pexels-photo-3735747.jpeg"
+                src="/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg"
                 alt="Quality testing laboratory"
                 className="rounded-xl shadow-lg w-full h-80 object-cover"
               />
@@ -151,12 +186,21 @@ const Products: React.FC = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center">
-            Download Product Catalog
+          <button 
+            onClick={() => setIsGalleryOpen(true)}
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center"
+          >
+            View Product Catalog
             <ChevronRight className="ml-2 w-5 h-5" />
           </button>
         </div>
       </div>
+
+      {/* Product Gallery Modal */}
+      <ProductGallery 
+        isOpen={isGalleryOpen} 
+        onClose={() => setIsGalleryOpen(false)} 
+      />
     </section>
   );
 };

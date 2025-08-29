@@ -94,8 +94,8 @@ const About: React.FC = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.pexels.com/photos/236705/pexels-photo-236705.jpeg" 
-                  alt="Manufacturing facility" 
+                  src="/factory/SDS_7865.JPG" 
+                  alt="Shree Karni Chemicals Manufacturing facility" 
                   className="w-full h-[400px] lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -161,8 +161,8 @@ const About: React.FC = () => {
             <div className="lg:order-1 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.pexels.com/photos/5650026/pexels-photo-5650026.jpeg" 
-                  alt="Chemical laboratory" 
+                  src="/factory/DJI_0014 (2).jpg" 
+                  alt="Shree Karni Chemicals aerial view of facility" 
                   className="w-full h-[400px] lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -249,7 +249,16 @@ const About: React.FC = () => {
         {/* Enhanced Mission Statement */}
         <div className="mt-24">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-50 via-white to-green-50 p-12 lg:p-16">
-            {/* Background Pattern */}
+            {/* Background Factory Image */}
+            <div className="absolute inset-0 opacity-10">
+              <img 
+                src="/factory/image from sky-1.jpg"
+                alt="Factory background"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Background Pattern Overlay */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute inset-0" style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,

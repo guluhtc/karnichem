@@ -133,13 +133,33 @@ const Contact: React.FC = () => {
               ))}
             </div>
 
-            {/* Map Placeholder */}
+            {/* Google Maps */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="h-64 bg-gradient-to-br from-red-100 to-green-100 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Interactive Map Coming Soon</p>
-                  <p className="text-sm text-gray-500">Bikaner, Rajasthan, India</p>
+              <div className="p-4 border-b border-gray-200">
+                <div className="flex items-center">
+                  <MapPin className="w-5 h-5 text-red-600 mr-2" />
+                  <h4 className="font-semibold text-gray-900">Find Us Here</h4>
+                </div>
+                <p className="text-sm text-gray-600 mt-1">Shree Karni Chemicals Factory Location</p>
+              </div>
+              <div className="relative">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3528.808225458427!2d73.30646277405782!3d27.81567332070799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393ffac507e8adab%3A0x550c186a859b7790!2sSHREE%20KARNI%20CHEMICALS!5e0!3m2!1sen!2sin!4v1756490640106!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="300" 
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Shree Karni Chemicals Location"
+                  className="w-full"
+                />
+                
+                {/* Map Overlay with Company Info */}
+                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg max-w-xs">
+                  <h5 className="font-semibold text-gray-900 text-sm">Shree Karni Chemicals</h5>
+                  <p className="text-xs text-gray-600 mt-1">25 KM Milestone, Jodhpur Road</p>
+                  <p className="text-xs text-gray-600">Bikaner, Rajasthan - 334801</p>
                 </div>
               </div>
             </div>

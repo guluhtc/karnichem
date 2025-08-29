@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Factory, ChevronUp, Facebook, Linkedin, Twitter, Instagram } from 'lucide-react';
+import ProductGallery from './ProductGallery';
 
 const Footer: React.FC = () => {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -141,9 +144,18 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {resources.map((resource) => (
                 <li key={resource}>
-                  <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
-                    {resource}
-                  </a>
+                  {resource === 'Product Catalog' ? (
+                    <button
+                      onClick={() => setIsGalleryOpen(true)}
+                      className="text-gray-400 hover:text-red-400 transition-colors text-left"
+                    >
+                      {resource}
+                    </button>
+                  ) : (
+                    <a href="#" className="text-gray-400 hover:text-red-400 transition-colors">
+                      {resource}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -217,6 +229,12 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Product Gallery Modal */}
+      <ProductGallery 
+        isOpen={isGalleryOpen} 
+        onClose={() => setIsGalleryOpen(false)} 
+      />
     </footer>
   );
 };
