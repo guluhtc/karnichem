@@ -85,46 +85,86 @@ const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium mb-6">
-            <Mail className="w-4 h-4 mr-2" />
-            Get In Touch
+        {/* Enhanced Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-100 to-green-100 text-gray-800 rounded-full text-sm font-medium mb-8 shadow-lg">
+            <Mail className="w-5 h-5 mr-2 text-red-600" />
+            Get In Touch With Experts
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Contact <span className="text-green-600">Our Team</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+            Contact <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-green-600">Our Team</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to discuss your PCC requirements? Contact us today for customized solutions and expert guidance.
+          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+            Ready to discuss your PCC requirements? Our technical experts are here to provide 
+            <span className="font-semibold text-gray-800"> customized solutions</span> and 
+            <span className="font-semibold text-gray-800"> professional guidance</span>.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>24-Hour Response Time</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              <span>Technical Expert Support</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span>Custom Solutions Available</span>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Contact Information */}
-          <div className="space-y-6 lg:space-y-8">
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 lg:mb-6">
-                Let's Start a Conversation
+          {/* Enhanced Contact Information */}
+          <div className="space-y-8">
+            <div className="bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-lg border">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                Let's Start a <span className="text-red-600">Conversation</span>
               </h3>
-              <p className="text-base sm:text-lg text-gray-700 mb-6 lg:mb-8 leading-relaxed">
+              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
                 Our team of experts is ready to help you find the perfect PCC solution for your specific needs. 
-                We provide technical support, custom formulations, and reliable supply chain management.
+                We provide <span className="font-semibold text-green-600">technical support</span>, 
+                <span className="font-semibold text-red-600"> custom formulations</span>, and 
+                <span className="font-semibold text-green-600"> reliable supply chain management</span>.
               </p>
+
+              {/* Key Benefits */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-gray-800">Expert Technical Guidance</span>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-red-50 rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-gray-800">Custom Grade Development</span>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-gray-800">Quality Assurance Support</span>
+                </div>
+                <div className="flex items-center space-x-3 p-3 bg-red-50 rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+                  <span className="text-sm font-medium text-gray-800">Reliable Supply Chain</span>
+                </div>
+              </div>
             </div>
 
-            {/* Contact Info Cards */}
-            <div className="space-y-4 lg:space-y-6">
+            {/* Enhanced Contact Info Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
-                <div key={index} className="flex items-start p-4 sm:p-6 bg-white rounded-xl shadow-lg border hover:shadow-xl transition-shadow">
-                  <div className={`${info.color} p-2 sm:p-3 rounded-lg mr-3 sm:mr-4 flex-shrink-0`}>
-                    <info.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="font-semibold text-gray-900 text-base sm:text-lg mb-1 sm:mb-2">
+                <div key={index} className="group bg-white p-6 rounded-2xl shadow-lg border hover:shadow-xl hover:border-red-200 transition-all duration-300 transform hover:-translate-y-1">
+                  <div className="flex items-center mb-4">
+                    <div className={`${info.color} p-4 rounded-xl mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <info.icon className="w-6 h-6" />
+                    </div>
+                    <h4 className="font-bold text-gray-900 text-lg group-hover:text-red-600 transition-colors">
                       {info.title}
                     </h4>
+                  </div>
+                  <div className="space-y-2">
                     {info.details.map((detail, detailIndex) => (
-                      <p key={detailIndex} className="text-gray-700 leading-relaxed text-sm sm:text-base break-words">
+                      <p key={detailIndex} className="text-gray-700 leading-relaxed font-medium">
                         {detail}
                       </p>
                     ))}
@@ -133,20 +173,30 @@ const Contact: React.FC = () => {
               ))}
             </div>
 
-            {/* Google Maps */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="p-4 border-b border-gray-200">
-                <div className="flex items-center">
-                  <MapPin className="w-5 h-5 text-red-600 mr-2" />
-                  <h4 className="font-semibold text-gray-900">Find Us Here</h4>
+            {/* Enhanced Google Maps */}
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border">
+              <div className="bg-gradient-to-r from-red-50 to-green-50 p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center mb-2">
+                      <MapPin className="w-6 h-6 text-red-600 mr-3" />
+                      <h4 className="font-bold text-gray-900 text-xl">Visit Our Facility</h4>
+                    </div>
+                    <p className="text-gray-700 font-medium">Shree Karni Chemicals Manufacturing Plant</p>
+                  </div>
+                  <div className="hidden sm:block">
+                    <div className="bg-white p-3 rounded-lg shadow-md">
+                      <div className="text-xs text-gray-600 mb-1">Established</div>
+                      <div className="font-bold text-red-600">2005</div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">Shree Karni Chemicals Factory Location</p>
               </div>
               <div className="relative">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3528.808225458427!2d73.30646277405782!3d27.81567332070799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393ffac507e8adab%3A0x550c186a859b7790!2sSHREE%20KARNI%20CHEMICALS!5e0!3m2!1sen!2sin!4v1756490640106!5m2!1sen!2sin" 
                   width="100%" 
-                  height="300" 
+                  height="350" 
                   style={{ border: 0 }}
                   allowFullScreen={false}
                   loading="lazy" 
@@ -155,34 +205,56 @@ const Contact: React.FC = () => {
                   className="w-full"
                 />
                 
-                {/* Map Overlay with Company Info */}
-                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg max-w-xs">
-                  <h5 className="font-semibold text-gray-900 text-sm">Shree Karni Chemicals</h5>
-                  <p className="text-xs text-gray-600 mt-1">25 KM Milestone, Jodhpur Road</p>
-                  <p className="text-xs text-gray-600">Bikaner, Rajasthan - 334801</p>
+                {/* Enhanced Map Overlay */}
+                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-xl border">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h5 className="font-bold text-gray-900 text-base mb-2">Shree Karni Chemicals</h5>
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        25 KM Milestone, Jodhpur Road N.H.-89<br />
+                        Post Deshnoke, Bikaner, Rajasthan - 334801
+                      </p>
+                    </div>
+                    <div className="ml-4 text-right">
+                      <div className="text-xs text-gray-500 mb-1">Distance from Bikaner</div>
+                      <div className="font-bold text-red-600">25 KM</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white p-6 sm:p-8 lg:p-12 rounded-2xl shadow-xl">
+          {/* Enhanced Contact Form */}
+          <div className="bg-gradient-to-br from-white to-gray-50 p-8 lg:p-12 rounded-2xl shadow-xl border">
             {isSubmitted ? (
-              <div className="text-center py-8 sm:py-12">
-                <div className="bg-green-100 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                  <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
+              <div className="text-center py-12">
+                <div className="bg-gradient-to-br from-green-100 to-green-200 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <CheckCircle className="w-12 h-12 text-green-600" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                   Message Sent Successfully!
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                  Thank you for contacting us. Our team will get back to you within 24 hours 
-                  with detailed information about your inquiry.
+                <p className="text-lg text-gray-600 leading-relaxed max-w-md mx-auto mb-6">
+                  Thank you for contacting us. Our technical team will get back to you within 
+                  <span className="font-semibold text-green-600"> 24 hours</span> with detailed information.
                 </p>
+                <div className="bg-green-50 p-4 rounded-lg max-w-sm mx-auto">
+                  <p className="text-sm text-green-700 font-medium">
+                    📧 Confirmation email sent to your inbox
+                  </p>
+                </div>
               </div>
             ) : (
               <>
-                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 sm:mb-8">Send us a Message</h3>
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                    Send us a <span className="text-green-600">Message</span>
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Fill out the form below and our technical experts will respond promptly
+                  </p>
+                </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -293,24 +365,80 @@ const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-400 text-white px-6 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center justify-center text-sm sm:text-base"
+                    className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 disabled:from-red-400 disabled:to-red-500 text-white px-6 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl inline-flex items-center justify-center text-lg group"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2"></div>
-                        <span className="hidden sm:inline">Sending Message...</span>
-                        <span className="sm:hidden">Sending...</span>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                        <span>Sending Message...</span>
                       </>
                     ) : (
                       <>
+                        <Send className="mr-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         Send Message
-                        <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                       </>
                     )}
                   </button>
+
+                  {/* Form Footer */}
+                  <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-red-50 rounded-lg border">
+                    <p className="text-sm text-gray-700 text-center">
+                      🔒 Your information is secure and will only be used to respond to your inquiry
+                    </p>
+                  </div>
                 </form>
               </>
             )}
+          </div>
+        </div>
+
+        {/* Enhanced CTA Section */}
+        <div className="mt-20 bg-gradient-to-r from-red-600 via-red-700 to-green-600 rounded-2xl p-8 lg:p-12 text-white shadow-2xl">
+          <div className="text-center">
+            <h3 className="text-3xl lg:text-4xl font-bold mb-6">
+              Ready to Partner with Industry Leaders?
+            </h3>
+            <p className="text-xl lg:text-2xl opacity-90 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Join hundreds of satisfied customers who trust Shree Karni Chemicals for their PCC requirements
+            </p>
+            
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2">19+</div>
+                <div className="text-sm lg:text-base opacity-80">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2">500+</div>
+                <div className="text-sm lg:text-base opacity-80">Happy Clients</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2">6</div>
+                <div className="text-sm lg:text-base opacity-80">Product Grades</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold mb-2">24h</div>
+                <div className="text-sm lg:text-base opacity-80">Response Time</div>
+              </div>
+            </div>
+
+            {/* Contact Methods */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:+919414095827"
+                className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center justify-center"
+              >
+                <Phone className="w-5 h-5 mr-3" />
+                Call Now: +91 9414095827
+              </a>
+              <a
+                href="mailto:karnichem@gmail.com"
+                className="border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
+              >
+                <Mail className="w-5 h-5 mr-3" />
+                Email: karnichem@gmail.com
+              </a>
+            </div>
           </div>
         </div>
       </div>

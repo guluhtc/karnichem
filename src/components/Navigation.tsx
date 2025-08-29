@@ -20,9 +20,10 @@ const Navigation: React.FC = () => {
     { name: 'Home', href: '/', anchor: '#home', color: 'hover:text-red-600' },
     { name: 'About Us', href: '/about', anchor: '#about', color: 'hover:text-green-600' },
     { name: 'Products', href: '/products', anchor: '#products', color: 'hover:text-red-600' },
-    { name: 'Blog', href: '/blog', anchor: '#blog', color: 'hover:text-green-600' },
-    { name: 'Testimonials', href: '/testimonials', anchor: '#testimonials', color: 'hover:text-red-600' },
-    { name: 'Contact', href: '/contact', anchor: '#contact', color: 'hover:text-green-600' },
+    { name: 'Gallery', href: '/product-gallery', anchor: '#gallery', color: 'hover:text-green-600' },
+    { name: 'Blog', href: '/blog', anchor: '#blog', color: 'hover:text-red-600' },
+    { name: 'Testimonials', href: '/testimonials', anchor: '#testimonials', color: 'hover:text-green-600' },
+    { name: 'Contact', href: '/contact', anchor: '#contact', color: 'hover:text-red-600' },
   ];
 
   const handleNavClick = (item: { name: string; href: string; anchor: string; color: string }) => {
@@ -91,7 +92,7 @@ const Navigation: React.FC = () => {
             <div className="hidden lg:block">
               <div className="flex items-center space-x-1">
                 {navigationItems.map((item) => (
-                  location.pathname === '/' ? (
+                  (location.pathname === '/' && item.name !== 'Gallery') ? (
                     <button
                       key={item.name}
                       onClick={() => handleNavClick(item)}
@@ -151,7 +152,7 @@ const Navigation: React.FC = () => {
           <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-screen overflow-y-auto">
             <div className="px-4 py-6 space-y-1">
               {navigationItems.map((item) => (
-                location.pathname === '/' ? (
+                (location.pathname === '/' && item.name !== 'Gallery') ? (
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item)}

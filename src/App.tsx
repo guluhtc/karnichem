@@ -6,6 +6,9 @@ import ProductsPage from './pages/ProductsPage';
 import BlogPage from './pages/BlogPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import ContactPage from './pages/ContactPage';
+import ProductGalleryPage from './pages/ProductGalleryPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="blog" element={<BlogPage />} />
         <Route path="testimonials" element={<TestimonialsPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="product-gallery" element={<ProductGalleryPage />} />
+        <Route path="products/:productId" element={<ProductDetailPage />} />
+        <Route path="blog/:blogId" element={<BlogDetailPage />} />
       </Route>
     </Routes>
   );

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Factory, ChevronRight, Beaker, Paintbrush, FileText, Pill } from 'lucide-react';
-import ProductGallery from './ProductGallery';
 
 const Products: React.FC = () => {
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const navigate = useNavigate();
   const products = [
     {
       icon: Beaker,
@@ -187,7 +187,7 @@ const Products: React.FC = () => {
         {/* CTA Section */}
         <div className="text-center mt-16">
           <button 
-            onClick={() => setIsGalleryOpen(true)}
+            onClick={() => navigate('/product-gallery')}
             className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center"
           >
             View Product Catalog
@@ -195,12 +195,6 @@ const Products: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Product Gallery Modal */}
-      <ProductGallery 
-        isOpen={isGalleryOpen} 
-        onClose={() => setIsGalleryOpen(false)} 
-      />
     </section>
   );
 };

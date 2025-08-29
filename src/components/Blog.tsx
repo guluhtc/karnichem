@@ -179,27 +179,6 @@ const Blog: React.FC = () => {
           ))}
         </div>
 
-        {/* Newsletter Subscription */}
-        <div className="bg-gradient-to-r from-red-600 to-green-600 rounded-2xl p-12 text-center text-white">
-          <h3 className="text-3xl font-bold mb-4">Stay Informed</h3>
-          <p className="text-xl mb-8 opacity-90">
-            Subscribe to our newsletter for the latest industry insights and technical updates
-          </p>
-          
-          <div className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button className="bg-white text-red-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-semibold transition-colors">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
         {/* CTA Section */}
         <div className="text-center mt-16">
           <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center">
