@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,20 +17,31 @@ const Navigation: React.FC = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'Home', href: '#home', color: 'hover:text-red-600' },
-    { name: 'About Us', href: '#about', color: 'hover:text-green-600' },
-    { name: 'Products', href: '#products', color: 'hover:text-red-600' },
-    { name: 'Blog', href: '#blog', color: 'hover:text-green-600' },
-    { name: 'Testimonials', href: '#testimonials', color: 'hover:text-red-600' },
-    { name: 'Contact', href: '#contact', color: 'hover:text-green-600' },
+    { name: 'Home', href: '/', anchor: '#home', color: 'hover:text-red-600' },
+    { name: 'About Us', href: '/about', anchor: '#about', color: 'hover:text-green-600' },
+    { name: 'Products', href: '/products', anchor: '#products', color: 'hover:text-red-600' },
+    { name: 'Blog', href: '/blog', anchor: '#blog', color: 'hover:text-green-600' },
+    { name: 'Testimonials', href: '/testimonials', anchor: '#testimonials', color: 'hover:text-red-600' },
+    { name: 'Contact', href: '/contact', anchor: '#contact', color: 'hover:text-green-600' },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (item: { name: string; href: string; anchor: string; color: string }) => {
     setIsMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    
+    // If we're on the homepage, scroll to section
+    if (location.pathname === '/') {
+      const element = document.querySelector(item.anchor);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
     }
+  };
+
+  const isActiveRoute = (href: string) => {
+    if (href === '/' && location.pathname === '/') return true;
+    if (href !== '/' && location.pathname.startsWith(href)) return true;
+    return false;
   };
 
   return (
@@ -65,40 +78,56 @@ const Navigation: React.FC = () => {
           <div className="flex justify-between items-center h-14 lg:h-16">
             {/* Compact Logo */}
             <div className="flex items-center">
-              <img 
-                src="/logo.png" 
-                alt="Shree Karni Chemicals Logo" 
-                className="h-10 w-auto"
-              />
+              <Link to="/" className="flex items-center hover:opacity-80 transition-opacity duration-300">
+                <img 
+                  src="/logo.png" 
+                  alt="Shree Karni Chemicals Logo" 
+                  className="h-10 w-auto"
+                />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:block">
               <div className="flex items-center space-x-1">
                 {navigationItems.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => handleNavClick(item.href)}
-                    className={`px-3 py-1.5 text-sm font-medium transition-all duration-300 rounded-lg ${
-                      item.name === 'Home' 
-                        ? 'text-gray-900 bg-gray-100' 
-                        : `text-gray-700 ${item.color}`
-                    } hover:bg-gray-50`}
-                  >
-                    {item.name}
-                  </button>
+                  location.pathname === '/' ? (
+                    <button
+                      key={item.name}
+                      onClick={() => handleNavClick(item)}
+                      className={`px-3 py-1.5 text-sm font-medium transition-all duration-300 rounded-lg ${
+                        isActiveRoute(item.href)
+                          ? 'text-gray-900 bg-gray-100' 
+                          : `text-gray-700 ${item.color}`
+                      } hover:bg-gray-50`}
+                    >
+                      {item.name}
+                    </button>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`px-3 py-1.5 text-sm font-medium transition-all duration-300 rounded-lg ${
+                        isActiveRoute(item.href)
+                          ? 'text-gray-900 bg-gray-100' 
+                          : `text-gray-700 ${item.color}`
+                      } hover:bg-gray-50`}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ))}
               </div>
             </div>
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center space-x-4">
-              <button
-                onClick={() => handleNavClick('#contact')}
+              <Link
+                to="/contact"
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-sm"
               >
                 Get Quote
-              </button>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -122,25 +151,41 @@ const Navigation: React.FC = () => {
           <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-screen overflow-y-auto">
             <div className="px-4 py-6 space-y-1">
               {navigationItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className={`block w-full text-left px-4 py-4 text-lg font-medium transition-colors rounded-lg ${
-                    item.name === 'Home' 
-                      ? 'text-red-600 bg-red-50' 
-                      : `text-gray-700 ${item.color}`
-                  } hover:bg-gray-50 active:bg-gray-100`}
-                >
-                  {item.name}
-                </button>
+                location.pathname === '/' ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item)}
+                    className={`block w-full text-left px-4 py-4 text-lg font-medium transition-colors rounded-lg ${
+                      isActiveRoute(item.href)
+                        ? 'text-red-600 bg-red-50' 
+                        : `text-gray-700 ${item.color}`
+                    } hover:bg-gray-50 active:bg-gray-100`}
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    onClick={() => handleNavClick(item)}
+                    className={`block w-full text-left px-4 py-4 text-lg font-medium transition-colors rounded-lg ${
+                      isActiveRoute(item.href)
+                        ? 'text-red-600 bg-red-50' 
+                        : `text-gray-700 ${item.color}`
+                    } hover:bg-gray-50 active:bg-gray-100`}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               <div className="pt-6 border-t border-gray-200 space-y-4">
-                <button
-                  onClick={() => handleNavClick('#contact')}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-4 rounded-lg font-semibold transition-colors text-lg"
+                <Link
+                  to="/contact"
+                  onClick={() => handleNavClick({ name: 'Contact', href: '/contact', anchor: '#contact', color: 'hover:text-green-600' })}
+                  className="block w-full bg-red-600 hover:bg-red-700 text-white px-4 py-4 rounded-lg font-semibold transition-colors text-lg text-center"
                 >
                   Get Quote
-                </button>
+                </Link>
                 
                 {/* Mobile Contact Info */}
                 <div className="pt-4 space-y-3 text-sm text-gray-600">

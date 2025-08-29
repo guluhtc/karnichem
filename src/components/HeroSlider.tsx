@@ -94,12 +94,16 @@ const HeroSlider: React.FC = () => {
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
-  // Auto slide functionality only
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 3000);
+  };
 
   const currentSlideData = slides[currentSlide];
 
   return (
-    <section id="home" className={`relative pt-16 sm:pt-18 md:pt-20 lg:pt-22 xl:pt-24 bg-gradient-to-br ${currentSlideData.gradientFrom} ${currentSlideData.gradientTo} min-h-screen overflow-hidden`}>
+    <section id="home" className={`relative pt-12 sm:pt-14 md:pt-16 lg:pt-18 xl:pt-20 bg-gradient-to-br ${currentSlideData.gradientFrom} ${currentSlideData.gradientTo} min-h-screen overflow-hidden`}>
       {/* Enhanced Background Pattern for Desktop */}
       <div className="absolute inset-0 opacity-5 lg:opacity-10">
         <div className="absolute inset-0" style={{
@@ -108,20 +112,20 @@ const HeroSlider: React.FC = () => {
       </div>
 
       {/* Compact Desktop Floating Elements */}
-      <div className="hidden lg:block absolute top-16 right-8 xl:right-12 2xl:right-16 w-20 h-20 xl:w-24 xl:h-24 bg-red-100 rounded-full opacity-15 animate-float"></div>
+      <div className="hidden lg:block absolute top-12 right-8 xl:right-12 2xl:right-16 w-20 h-20 xl:w-24 xl:h-24 bg-red-100 rounded-full opacity-15 animate-float"></div>
       <div className="hidden lg:block absolute bottom-16 left-8 xl:left-12 2xl:left-16 w-16 h-16 xl:w-20 xl:h-20 bg-green-100 rounded-full opacity-15 animate-float-delayed"></div>
 
-      <div className="relative w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-6 sm:py-8 lg:py-10 xl:py-12 2xl:py-16">
+      <div className="relative w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-2 sm:py-4 lg:py-6 xl:py-8 2xl:py-10">
         <div className="max-w-7xl mx-auto">
           {/* Clean Auto Slider Section - Optimized Position */}
           <div className="relative w-full mb-6 sm:mb-8 lg:mb-10">
-            <div className="relative rounded-lg overflow-hidden shadow-md w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-gray-50">
+            <div className="relative rounded-lg lg:rounded-xl xl:rounded-2xl overflow-hidden shadow-md lg:shadow-xl xl:shadow-2xl w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto bg-gray-50 lg:bg-white border lg:border-gray-200">
               {/* Simple Image Container */}
-              <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[240px] xl:h-[260px]">
+              <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] lg:h-[400px] xl:h-[480px] 2xl:h-[560px]">
                 <img 
                   src={currentSlideData.image}
                   alt={currentSlideData.title}
-                  className="w-full h-full object-contain transition-opacity duration-500"
+                  className="w-full h-full object-contain lg:object-cover xl:object-contain transition-opacity duration-500"
                   style={{
                     objectPosition: 'center center',
                     imageRendering: 'high-quality',
