@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, ChevronRight, BookOpen } from 'lucide-react';
 
 const Blog: React.FC = () => {
@@ -87,17 +88,39 @@ const Blog: React.FC = () => {
 
         {/* Featured Article */}
         <div className="mb-16">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <Link
+            to="/blog"
+            className="group block bg-white rounded-2xl shadow-xl overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-red-500/20"
+            tabIndex={0}
+            role="button"
+            aria-label={`Read featured article: ${featuredPost.title}`}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = '/blog';
+              }
+            }}
+          >
             <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative h-80 lg:h-auto">
+              <div className="relative h-80 lg:h-auto overflow-hidden">
                 <img 
                   src={featuredPost.image}
                   alt={featuredPost.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                <div className={`absolute top-6 left-6 px-3 py-1 ${featuredPost.categoryColor} rounded-full text-sm font-medium`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
+                <div className={`absolute top-6 left-6 px-3 py-1 ${featuredPost.categoryColor} rounded-full text-sm font-medium shadow-lg`}>
                   Featured
+                </div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3 rounded-lg font-semibold shadow-lg">
+                      Read Featured Article
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -107,7 +130,7 @@ const Blog: React.FC = () => {
                     {featuredPost.category}
                   </div>
                   
-                  <h3 className="text-3xl font-bold text-gray-900 leading-tight">
+                  <h3 className="text-3xl font-bold text-gray-900 leading-tight group-hover:text-red-600 transition-colors duration-300">
                     {featuredPost.title}
                   </h3>
                   
@@ -125,30 +148,53 @@ const Blog: React.FC = () => {
                       <span>{featuredPost.readTime}</span>
                     </div>
                     
-                    <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center group">
+                    <div className="bg-red-600 group-hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 inline-flex items-center group/btn">
                       Read Article
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Regular Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {regularPosts.map((post) => (
-            <article key={post.id} className="bg-white rounded-xl shadow-lg border overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+            <Link
+              key={post.id}
+              to="/blog"
+              className="group block bg-white rounded-xl shadow-lg border overflow-hidden cursor-pointer transform transition-all duration-300 hover:shadow-2xl hover:scale-105 active:scale-100 focus:outline-none focus:ring-4 focus:ring-red-500/20"
+              tabIndex={0}
+              role="button"
+              aria-label={`Read article: ${post.title}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.href = '/blog';
+                }
+              }}
+            >
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                <div className={`absolute top-4 left-4 px-2 py-1 ${post.categoryColor} rounded-full text-xs font-medium`}>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
+                <div className={`absolute top-4 left-4 px-2 py-1 ${post.categoryColor} rounded-full text-xs font-medium shadow-lg`}>
                   {post.category}
+                </div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-lg font-semibold shadow-lg text-sm">
+                      Read Article
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -162,7 +208,7 @@ const Blog: React.FC = () => {
                   <span>{post.readTime}</span>
                 </div>
                 
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors duration-300">
                   {post.title}
                 </h3>
                 
@@ -170,21 +216,26 @@ const Blog: React.FC = () => {
                   {post.excerpt}
                 </p>
                 
-                <button className="text-red-600 hover:text-red-700 font-medium inline-flex items-center group">
-                  Read More
-                  <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div className="pt-4 border-t border-gray-100">
+                  <span className="text-red-600 hover:text-red-700 font-medium inline-flex items-center group/link">
+                    Read More
+                    <ArrowRight className="ml-1 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                  </span>
+                </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center">
+          <Link 
+            to="/blog"
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center focus:outline-none focus:ring-4 focus:ring-green-500/20"
+          >
             View All Articles
             <ChevronRight className="ml-2 w-5 h-5" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

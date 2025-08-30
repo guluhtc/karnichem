@@ -88,20 +88,43 @@ const BlogPage: React.FC = () => {
         <div className="mb-16">
           <Link
             to={`/blog/${blogPosts[0].id}`}
-            className="group block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+            className="group block bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-red-500/20"
+            tabIndex={0}
+            role="button"
+            aria-label={`Read featured article: ${blogPosts[0].title}`}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.location.href = `/blog/${blogPosts[0].id}`;
+              }
+            }}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2">
               <div className="relative h-64 lg:h-auto overflow-hidden">
                 <img
                   src={blogPosts[0].image}
                   alt={blogPosts[0].title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
                 />
-                <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
+                
+                <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                   Featured
                 </div>
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-900">
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-900 shadow-lg">
                   {blogPosts[0].category}
+                </div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3 rounded-lg font-semibold shadow-lg">
+                      Read Featured Article
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="p-8 lg:p-12 flex flex-col justify-center">
@@ -125,8 +148,8 @@ const BlogPage: React.FC = () => {
                     <span>{blogPosts[0].readTime}</span>
                   </div>
                 </div>
-                <div className="flex items-center text-red-600 font-medium group-hover:underline">
-                  Read Article <ArrowRight className="w-4 h-4 ml-2" />
+                <div className="flex items-center text-red-600 font-medium group-hover:underline transition-all duration-300 group/link">
+                  Read Article <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" />
                 </div>
               </div>
             </div>
@@ -139,19 +162,41 @@ const BlogPage: React.FC = () => {
             <Link
               key={post.id}
               to={`/blog/${post.id}`}
-              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group block bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-red-500/20"
+              tabIndex={0}
+              role="button"
+              aria-label={`Read article: ${post.title}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.href = `/blog/${post.id}`;
+                }
+              }}
             >
               {/* Post Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
                 />
                 
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
+                
                 {/* Category Badge */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-900">
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-900 shadow-lg">
                   {post.category}
+                </div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transform scale-90 group-hover:scale-100 transition-all duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-lg font-semibold shadow-lg text-sm">
+                      Read Full Article
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -190,8 +235,9 @@ const BlogPage: React.FC = () => {
 
                 {/* Read More */}
                 <div className="pt-4 border-t border-gray-100">
-                  <span className="text-sm font-medium text-red-600 group-hover:underline">
-                    Read More →
+                  <span className="text-sm font-medium text-red-600 group-hover:underline transition-all duration-300 inline-flex items-center group/link">
+                    Read More 
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </div>
