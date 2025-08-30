@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Award, CheckCircle } from 'lucide-react';
+import { ChevronRight, Award } from 'lucide-react';
 
 interface SlideData {
   id: number;
@@ -16,9 +16,9 @@ interface SlideData {
 
 // KK Folder Images - Choose one of the options below:
 
-// Option 1: Local images (your actual kk folder images)
+// Updated images with homeslider image replacing the first one
 const kkImages = [
-  "/kk/11.png",
+  "/homeslider/download (1).jpeg",
   "/kk/22.jpg", 
   "/kk/33.jpg",
   "/kk/ssss.png"

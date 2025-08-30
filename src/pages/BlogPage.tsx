@@ -135,7 +135,7 @@ const BlogPage: React.FC = () => {
 
         {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {blogPosts.slice(1).map((post, index) => (
+          {blogPosts.slice(1).map((post) => (
             <Link
               key={post.id}
               to={`/blog/${post.id}`}

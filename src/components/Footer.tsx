@@ -139,7 +139,7 @@ const Footer: React.FC = () => {
                 Quick Navigation
               </h4>
               <div className="grid grid-cols-1 gap-2">
-                {quickLinks.map((link, index) => (
+                {quickLinks.map((link) => (
                   <div key={link.name} className="group">
                     {link.name === 'Gallery' ? (
                       <button

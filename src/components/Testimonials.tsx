@@ -163,7 +163,7 @@ const Testimonials: React.FC = () => {
 
         {/* Other Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.filter((_, index) => index !== currentTestimonial).slice(0, 3).map((testimonial, index) => (
+          {testimonials.filter((_, index) => index !== currentTestimonial).slice(0, 3).map((testimonial) => (
             <div key={testimonial.id} className="bg-white p-8 rounded-xl border-2 border-gray-100 hover:border-red-200 transition-all duration-300 hover:shadow-lg group">
               <div className="flex items-center mb-6">
                 <img

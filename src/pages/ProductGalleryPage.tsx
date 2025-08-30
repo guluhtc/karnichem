@@ -5,67 +5,153 @@ import { Link } from 'react-router-dom';
 const ProductGalleryPage: React.FC = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  // All product images from the public/products folder
+  // Comprehensive product images from the public/products folder organized by category
   const productImages = [
+    // Dentifrice PCC Category
     { 
       src: '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg', 
-      title: 'Dentifrice PCC Grade',
-      description: 'High purity calcium carbonate for oral care applications'
-    },
-    { 
-      src: '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg', 
-      title: 'Detergent Grade PCC',
-      description: 'Superior whiteness grade for cleaning applications'
-    },
-    { 
-      src: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg', 
-      title: 'Food & Pharmaceutical Grade',
-      description: 'USP grade for food and pharmaceutical applications'
-    },
-    { 
-      src: '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg', 
-      title: 'Paper & Coating Grade',
-      description: 'Enhanced brightness for paper and coating applications'
-    },
-    { 
-      src: '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg', 
-      title: 'Paint Grade PCC',
-      description: 'Optimal particle distribution for paint applications'
-    },
-    { 
-      src: '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg', 
-      title: 'Rubber Grade PCC',
-      description: 'High reinforcement grade for rubber applications'
+      title: 'Dentifrice PCC - Premium Grade',
+      description: 'Ultra-fine particles for premium oral care applications',
+      category: 'Oral Care',
+      purity: '≥ 99.5%'
     },
     { 
       src: '/products/aa7d386e-1f59-4abb-bd0b-9d0f0746068f.jpg', 
-      title: 'Industrial Grade PCC',
-      description: 'General purpose industrial applications'
-    },
-    { 
-      src: '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg', 
-      title: 'Specialty Grade PCC',
-      description: 'Custom formulations for specific applications'
-    },
-    { 
-      src: '/products/0e7f7e2d-2b8d-4203-9846-5200582764e7.jpg', 
-      title: 'High Purity Grade',
-      description: 'Ultra-pure grade for sensitive applications'
+      title: 'Dentifrice PCC - Standard Grade',
+      description: 'High-quality grade for standard toothpaste formulations',
+      category: 'Oral Care',
+      purity: '≥ 99.2%'
     },
     { 
       src: '/products/115f3623-a37d-4938-bdb6-53b3d6b26f78.jpg', 
-      title: 'Coated Grade PCC',
-      description: 'Surface treated for enhanced performance'
+      title: 'Dentifrice PCC - Economy Grade',
+      description: 'Cost-effective solution for mass market products',
+      category: 'Oral Care',
+      purity: '≥ 98.8%'
+    },
+    // Detergent PCC Category
+    { 
+      src: '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg', 
+      title: 'Detergent PCC - High Whiteness',
+      description: 'Superior whiteness grade for premium cleaning products',
+      category: 'Cleaning Industry',
+      purity: '≥ 98.5%'
+    },
+    { 
+      src: '/products/618634fe-1faa-4081-9fd3-05228cc9adb2.jpg', 
+      title: 'Detergent PCC - Liquid Grade',
+      description: 'Excellent dispersibility for liquid detergent formulations',
+      category: 'Cleaning Industry',
+      purity: '≥ 98.0%'
+    },
+    { 
+      src: '/products/5eb0b691-75db-444a-8974-034acdff4799.jpg', 
+      title: 'Detergent PCC - Powder Grade',
+      description: 'Optimized for powder detergent applications',
+      category: 'Cleaning Industry',
+      purity: '≥ 98.2%'
+    },
+    // Food & Pharmaceutical Category
+    { 
+      src: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg', 
+      title: 'Food Grade PCC - USP Standard',
+      description: 'USP/EP compliant grade for food applications',
+      category: 'Food & Pharmaceutical',
+      purity: '≥ 99.8%'
+    },
+    { 
+      src: '/products/e46650cf-e24d-4836-8ef4-dcbc3a57047f.jpg', 
+      title: 'Pharmaceutical PCC - Excipient Grade',
+      description: 'High-purity excipient for pharmaceutical tablets',
+      category: 'Food & Pharmaceutical',
+      purity: '≥ 99.9%'
     },
     { 
       src: '/products/159b9fe6-50a7-4392-a8e6-e50635426a0f.jpg', 
-      title: 'Nano Grade PCC',
-      description: 'Ultra-fine particles for advanced applications'
+      title: 'Nutraceutical PCC Grade',
+      description: 'Specialized grade for nutritional supplements',
+      category: 'Food & Pharmaceutical',
+      purity: '≥ 99.7%'
+    },
+    // Paper & Coating Category  
+    { 
+      src: '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg', 
+      title: 'Paper Grade PCC - High Brightness',
+      description: 'Enhanced brightness for premium paper applications',
+      category: 'Paper & Coatings',
+      purity: '≥ 98.0%'
+    },
+    { 
+      src: '/products/dafa86c1-1629-4b87-9e40-d87b186da61a.jpg', 
+      title: 'Coating Grade PCC',
+      description: 'Optimized for coating and printing applications',
+      category: 'Paper & Coatings',
+      purity: '≥ 98.2%'
+    },
+    { 
+      src: '/products/54459f10-b8d2-4b5a-b5cb-67675cd6cbee.jpg', 
+      title: 'Printing Grade PCC',
+      description: 'Superior printability and surface quality',
+      category: 'Paper & Coatings',
+      purity: '≥ 98.1%'
+    },
+    // Paint Industry Category
+    { 
+      src: '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg', 
+      title: 'Paint Grade PCC - Exterior',
+      description: 'Weather-resistant grade for exterior paint applications',
+      category: 'Paint Industry',
+      purity: '≥ 98.5%'
     },
     { 
       src: '/products/3cb1ac27-c51b-4ade-ac17-ea6cad20fc73.jpg', 
-      title: 'Precipitated Calcium Carbonate',
-      description: 'Standard grade for multiple industrial uses'
+      title: 'Paint Grade PCC - Interior',
+      description: 'High opacity grade for interior paint formulations',
+      category: 'Paint Industry',
+      purity: '≥ 98.3%'
+    },
+    { 
+      src: '/products/085bd13e-4d1a-4c0e-aa2d-dc370dae073e.jpg', 
+      title: 'Decorative Paint Grade',
+      description: 'Premium grade for decorative and artistic paints',
+      category: 'Paint Industry',
+      purity: '≥ 98.4%'
+    },
+    // Rubber & Plastics Category
+    { 
+      src: '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg', 
+      title: 'Rubber Grade PCC - High Reinforcement',
+      description: 'Maximum reinforcement for premium rubber products',
+      category: 'Rubber & Plastics',
+      purity: '≥ 98.0%'
+    },
+    { 
+      src: '/products/0e7f7e2d-2b8d-4203-9846-5200582764e7.jpg', 
+      title: 'Plastic Grade PCC',
+      description: 'Enhanced properties for plastic manufacturing',
+      category: 'Rubber & Plastics',
+      purity: '≥ 97.8%'
+    },
+    { 
+      src: '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg', 
+      title: 'Automotive Grade PCC',
+      description: 'Specialized grade for automotive components',
+      category: 'Rubber & Plastics',
+      purity: '≥ 98.1%'
+    },
+    { 
+      src: '/products/909457bd-e035-49ce-9531-89a9211c53c3.jpg', 
+      title: 'Industrial Rubber Grade',
+      description: 'Heavy-duty grade for industrial rubber applications',
+      category: 'Rubber & Plastics',
+      purity: '≥ 97.9%'
+    },
+    { 
+      src: '/products/89b75b34-4da4-4611-807b-5a4136a89c0d.jpg', 
+      title: 'Composite Grade PCC',
+      description: 'Advanced grade for composite material applications',
+      category: 'Rubber & Plastics',
+      purity: '≥ 98.0%'
     }
   ];
 

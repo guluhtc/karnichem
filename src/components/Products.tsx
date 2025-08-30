@@ -4,6 +4,8 @@ import { Factory, ChevronRight, Beaker, Paintbrush, FileText, Pill } from 'lucid
 
 const Products: React.FC = () => {
   const navigate = useNavigate();
+  
+  // Enhanced product data with all available images
   const products = [
     {
       icon: Beaker,
@@ -12,7 +14,14 @@ const Products: React.FC = () => {
       features: ['Controlled Particle Size', 'High Purity', 'FDA Approved', 'Excellent Abrasion'],
       color: 'bg-red-100 text-red-600',
       borderColor: 'border-red-200 hover:border-red-300',
-      image: '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg'
+      images: [
+        '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg',
+        '/products/aa7d386e-1f59-4abb-bd0b-9d0f0746068f.jpg',
+        '/products/115f3623-a37d-4938-bdb6-53b3d6b26f78.jpg'
+      ],
+      category: 'Oral Care',
+      purity: '≥ 99.5%',
+      applications: ['Toothpaste', 'Dental Care', 'Oral Hygiene']
     },
     {
       icon: Factory,
@@ -21,7 +30,14 @@ const Products: React.FC = () => {
       features: ['High Whiteness', 'Superior Cleaning', 'Cost Effective', 'Eco-Friendly'],
       color: 'bg-green-100 text-green-600',
       borderColor: 'border-green-200 hover:border-green-300',
-      image: '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg'
+      images: [
+        '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg',
+        '/products/618634fe-1faa-4081-9fd3-05228cc9adb2.jpg',
+        '/products/5eb0b691-75db-444a-8974-034acdff4799.jpg'
+      ],
+      category: 'Cleaning Industry',
+      purity: '≥ 98.5%',
+      applications: ['Detergents', 'Soaps', 'Cleaning Products']
     },
     {
       icon: Pill,
@@ -30,7 +46,14 @@ const Products: React.FC = () => {
       features: ['USP Grade', 'Food Safe', 'GMP Certified', 'Heavy Metal Free'],
       color: 'bg-red-100 text-red-600',
       borderColor: 'border-red-200 hover:border-red-300',
-      image: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg'
+      images: [
+        '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg',
+        '/products/e46650cf-e24d-4836-8ef4-dcbc3a57047f.jpg',
+        '/products/159b9fe6-50a7-4392-a8e6-e50635426a0f.jpg'
+      ],
+      category: 'Food & Pharmaceutical',
+      purity: '≥ 99.8%',
+      applications: ['Food Additives', 'Pharmaceuticals', 'Supplements']
     },
     {
       icon: FileText,
@@ -39,7 +62,14 @@ const Products: React.FC = () => {
       features: ['High Brightness', 'Excellent Opacity', 'Improved Printability', 'Cost Reduction'],
       color: 'bg-green-100 text-green-600',
       borderColor: 'border-green-200 hover:border-green-300',
-      image: '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg'
+      images: [
+        '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg',
+        '/products/dafa86c1-1629-4b87-9e40-d87b186da61a.jpg',
+        '/products/54459f10-b8d2-4b5a-b5cb-67675cd6cbee.jpg'
+      ],
+      category: 'Paper & Coatings',
+      purity: '≥ 98.0%',
+      applications: ['Paper Manufacturing', 'Coatings', 'Printing']
     },
     {
       icon: Paintbrush,
@@ -48,7 +78,14 @@ const Products: React.FC = () => {
       features: ['Uniform Particles', 'Weather Resistant', 'Enhanced Durability', 'Color Stability'],
       color: 'bg-red-100 text-red-600',
       borderColor: 'border-red-200 hover:border-red-300',
-      image: '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg'
+      images: [
+        '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg',
+        '/products/3cb1ac27-c51b-4ade-ac17-ea6cad20fc73.jpg',
+        '/products/085bd13e-4d1a-4c0e-aa2d-dc370dae073e.jpg'
+      ],
+      category: 'Paint Industry',
+      purity: '≥ 98.5%',
+      applications: ['Paints', 'Coatings', 'Pigments']
     },
     {
       icon: Factory,
@@ -57,7 +94,16 @@ const Products: React.FC = () => {
       features: ['High Reinforcement', 'Improved Tensile', 'Weather Stability', 'Processing Aid'],
       color: 'bg-green-100 text-green-600',
       borderColor: 'border-green-200 hover:border-green-300',
-      image: '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg'
+      images: [
+        '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg',
+        '/products/0e7f7e2d-2b8d-4203-9846-5200582764e7.jpg',
+        '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg',
+        '/products/909457bd-e035-49ce-9531-89a9211c53c3.jpg',
+        '/products/89b75b34-4da4-4611-807b-5a4136a89c0d.jpg'
+      ],
+      category: 'Rubber & Plastics',
+      purity: '≥ 98.0%',
+      applications: ['Rubber Products', 'Plastics', 'Automotive Parts']
     }
   ];
 
@@ -94,7 +140,7 @@ const Products: React.FC = () => {
               {/* Product Image */}
               <div className="relative h-48 sm:h-56 overflow-hidden">
                 <img 
-                  src={product.image}
+                  src={product.images[0]}
                   alt={product.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -108,7 +154,7 @@ const Products: React.FC = () => {
                 {/* Product Category Badge */}
                 <div className="absolute bottom-4 left-4">
                   <span className="bg-white/90 backdrop-blur-sm text-gray-900 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                    PCC Grade
+                    {product.category}
                   </span>
                 </div>
               </div>

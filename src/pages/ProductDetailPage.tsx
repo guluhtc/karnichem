@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle, Download, Phone, Mail } from 'lucide-react';
+import { CheckCircle, Download, Phone, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProductDetail {
   id: string;
   title: string;
   category: string;
   description: string;
-  image: string;
+  images: string[];
   features: string[];
   applications: string[];
   specifications: {
@@ -27,6 +27,7 @@ interface ProductDetail {
 
 const ProductDetailPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const products: Record<string, ProductDetail> = {
     'dentifrice-pcc': {
@@ -34,7 +35,11 @@ const ProductDetailPage: React.FC = () => {
       title: 'Dentifrice PCC Grade',
       category: 'Oral Care',
       description: 'Premium quality precipitated calcium carbonate specifically designed for oral care applications. Our dentifrice grade PCC offers controlled particle size distribution and exceptional purity, making it ideal for toothpaste and dental care product formulations.',
-      image: '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg',
+      images: [
+        '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg',
+        '/products/aa7d386e-1f59-4abb-bd0b-9d0f0746068f.jpg',
+        '/products/115f3623-a37d-4938-bdb6-53b3d6b26f78.jpg'
+      ],
       features: [
         'Ultra-fine particle size for smooth texture',
         'High purity (99%+) for safety standards',
@@ -69,7 +74,11 @@ const ProductDetailPage: React.FC = () => {
       title: 'Detergent Grade PCC',
       category: 'Cleaning Products',
       description: 'High-performance precipitated calcium carbonate engineered for detergent and cleaning product applications. Our detergent grade PCC provides excellent whiteness and cleaning efficiency while maintaining product stability.',
-      image: '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg',
+      images: [
+        '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg',
+        '/products/618634fe-1faa-4081-9fd3-05228cc9adb2.jpg',
+        '/products/5eb0b691-75db-444a-8974-034acdff4799.jpg'
+      ],
       features: [
         'Superior whiteness for bright formulations',
         'Excellent dispersibility in liquid detergents',
@@ -104,7 +113,11 @@ const ProductDetailPage: React.FC = () => {
       title: 'Food & Pharmaceutical Grade PCC',
       category: 'Food & Pharma',
       description: 'USP/EP grade precipitated calcium carbonate meeting the highest purity standards for food and pharmaceutical applications. Manufactured under strict GMP conditions with complete traceability.',
-      image: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg',
+      images: [
+        '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg',
+        '/products/e46650cf-e24d-4836-8ef4-dcbc3a57047f.jpg',
+        '/products/159b9fe6-50a7-4392-a8e6-e50635426a0f.jpg'
+      ],
       features: [
         'USP/EP/JP pharmacopoeia compliance',
         'Heavy metals < 10 ppm',
@@ -139,7 +152,11 @@ const ProductDetailPage: React.FC = () => {
       title: 'Paper & Coating Grade PCC',
       category: 'Paper & Coatings',
       description: 'Specially engineered precipitated calcium carbonate for paper and coating applications. Provides excellent opacity, brightness, and printability while reducing production costs.',
-      image: '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg',
+      images: [
+        '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg',
+        '/products/dafa86c1-1629-4b87-9e40-d87b186da61a.jpg',
+        '/products/54459f10-b8d2-4b5a-b5cb-67675cd6cbee.jpg'
+      ],
       features: [
         'High brightness and opacity',
         'Excellent printability',
@@ -174,7 +191,11 @@ const ProductDetailPage: React.FC = () => {
       title: 'Paint Grade PCC',
       category: 'Paints & Coatings',
       description: 'Premium precipitated calcium carbonate for paint and coating applications. Offers excellent opacity, durability, and weather resistance while maintaining cost efficiency.',
-      image: '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg',
+      images: [
+        '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg',
+        '/products/3cb1ac27-c51b-4ade-ac17-ea6cad20fc73.jpg',
+        '/products/085bd13e-4d1a-4c0e-aa2d-dc370dae073e.jpg'
+      ],
       features: [
         'Excellent opacity and hiding power',
         'Superior weather resistance',
@@ -209,7 +230,13 @@ const ProductDetailPage: React.FC = () => {
       title: 'Rubber Grade PCC',
       category: 'Rubber Industry',
       description: 'High-performance precipitated calcium carbonate for rubber applications. Provides excellent reinforcement properties and improves mechanical strength of rubber products.',
-      image: '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg',
+      images: [
+        '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg',
+        '/products/0e7f7e2d-2b8d-4203-9846-5200582764e7.jpg',
+        '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg',
+        '/products/909457bd-e035-49ce-9531-89a9211c53c3.jpg',
+        '/products/89b75b34-4da4-4611-807b-5a4136a89c0d.jpg'
+      ],
       features: [
         'High reinforcement properties',
         'Improved tensile strength',
@@ -271,16 +298,68 @@ const ProductDetailPage: React.FC = () => {
 
         {/* Product Header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Product Image */}
-          <div className="relative">
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-xl"
-            />
-            <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-              {product.category}
+          {/* Enhanced Product Image Gallery */}
+          <div className="space-y-4">
+            {/* Main Product Image */}
+            <div className="relative group">
+              <img
+                src={product.images[currentImageIndex]}
+                alt={`${product.title} - Image ${currentImageIndex + 1}`}
+                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-xl transition-all duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+              
+              {/* Category Badge */}
+              <div className="absolute top-4 left-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                {product.category}
+              </div>
+
+              {/* Image Counter */}
+              <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                {currentImageIndex + 1} / {product.images.length}
+              </div>
+
+              {/* Navigation Arrows */}
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setCurrentImageIndex((prev) => (prev - 1 + product.images.length) % product.images.length)}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => setCurrentImageIndex((prev) => (prev + 1) % product.images.length)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
             </div>
+
+            {/* Image Thumbnails */}
+            {product.images.length > 1 && (
+              <div className="flex space-x-3 overflow-x-auto pb-2">
+                {product.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      index === currentImageIndex 
+                        ? 'border-red-500 shadow-lg scale-105' 
+                        : 'border-gray-200 hover:border-red-300 opacity-70 hover:opacity-100'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.title} thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Info */}
