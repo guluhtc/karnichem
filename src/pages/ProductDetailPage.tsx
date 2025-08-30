@@ -303,13 +303,15 @@ const ProductDetailPage: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/contact"
+              <a
+                href="https://wa.me/919414095827?text=Hello! I would like to get a quote for this PCC product."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Request Quote
-              </Link>
+              </a>
               <button className="border-2 border-gray-300 hover:border-red-600 text-gray-700 hover:text-red-600 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center">
                 <Download className="w-5 h-5 mr-2" />
                 Download Datasheet

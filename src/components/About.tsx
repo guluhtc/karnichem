@@ -1,7 +1,68 @@
-import React from 'react';
-import { Users, Award, Factory, TrendingUp, Shield, Globe } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, Award, Factory, TrendingUp, Shield, Globe, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 
 const About: React.FC = () => {
+  // Factory Slider State
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const factoryImages = [
+    {
+      src: "/factory/SDS_7865.JPG",
+      alt: "Shree Karni Chemicals Manufacturing facility",
+      title: "Manufacturing Excellence",
+      description: "State-of-the-art production facilities with modern equipment"
+    },
+    {
+      src: "/factory/DJI_0014 (2).jpg",
+      alt: "Aerial view of Shree Karni Chemicals facility",
+      title: "Aerial View",
+      description: "Comprehensive view of our manufacturing complex"
+    },
+    {
+      src: "/factory/image from sky-1.jpg",
+      alt: "Sky view of factory complex",
+      title: "Factory Complex",
+      description: "Complete overview of our industrial infrastructure"
+    },
+    {
+      src: "/factory/SDS_7839.JPG",
+      alt: "Factory production area",
+      title: "Production Area",
+      description: "Advanced production lines for quality PCC manufacturing"
+    },
+    {
+      src: "/factory/DJI_0006.JPG",
+      alt: "Factory infrastructure",
+      title: "Infrastructure",
+      description: "Modern infrastructure supporting efficient operations"
+    }
+  ];
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % factoryImages.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying, factoryImages.length]);
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsPlaying(false);
+    setTimeout(() => setIsPlaying(true), 3000);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % factoryImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + factoryImages.length) % factoryImages.length);
+  };
+
   const achievements = [
     {
       icon: Users,
@@ -90,19 +151,69 @@ const About: React.FC = () => {
               </p>
             </div>
             
-            {/* Image */}
+            {/* Factory Image Slider */}
             <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="/factory/SDS_7865.JPG" 
-                  alt="Shree Karni Chemicals Manufacturing facility" 
-                  className="w-full h-[400px] lg:h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+                {/* Main Slider Image */}
+                <div className="relative h-[400px] lg:h-[500px]">
+                  <img 
+                    src={factoryImages[currentSlide].src}
+                    alt={factoryImages[currentSlide].alt}
+                    className="w-full h-full object-cover transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                  
+                  {/* Image Info Overlay */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-xl p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <h4 className="font-bold text-gray-900 text-lg mb-1">
+                      {factoryImages[currentSlide].title}
+                    </h4>
+                    <p className="text-gray-600 text-sm">
+                      {factoryImages[currentSlide].description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Navigation Arrows */}
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Play/Pause Button */}
+                <button
+                  onClick={() => setIsPlaying(!isPlaying)}
+                  className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+                >
+                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                </button>
+
+                {/* Slide Indicators */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                  {factoryImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === currentSlide 
+                          ? 'bg-white scale-125' 
+                          : 'bg-white/50 hover:bg-white/80'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
               
               {/* Floating Stats Card */}
-              <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl">
+              <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl z-10">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-red-600">19+</div>
                   <div className="text-sm text-gray-600">Years of Excellence</div>
@@ -157,23 +268,66 @@ const About: React.FC = () => {
               </div>
             </div>
             
-            {/* Second Image */}
-            <div className="lg:order-1 relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="/factory/DJI_0014 (2).jpg" 
-                  alt="Shree Karni Chemicals aerial view of facility" 
-                  className="w-full h-[400px] lg:h-[500px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              </div>
-              
-              {/* Floating Achievement Card */}
-              <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-xl shadow-xl">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600">#1</div>
-                  <div className="text-sm text-gray-600">PCC Manufacturer</div>
-                  <div className="text-sm text-gray-600">in Rajasthan</div>
+            {/* Journey Highlights */}
+            <div className="lg:order-1">
+              <div className="bg-gradient-to-br from-green-50 to-red-50 rounded-2xl p-8 lg:p-12 shadow-xl border">
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium mb-4 shadow-md">
+                    <Factory className="w-4 h-4 mr-2 text-green-600" />
+                    Our Legacy
+                  </div>
+                  <h4 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                    Journey of <span className="text-green-600">Excellence</span>
+                  </h4>
+                </div>
+
+                {/* Key Milestones */}
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-md">
+                    <div className="bg-red-100 p-3 rounded-lg flex-shrink-0">
+                      <div className="text-red-600 font-bold text-lg">1997</div>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-gray-900 mb-1">Industry Entry</h5>
+                      <p className="text-gray-600 text-sm">Padam Jain began his journey in the PCC industry</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-md">
+                    <div className="bg-green-100 p-3 rounded-lg flex-shrink-0">
+                      <div className="text-green-600 font-bold text-lg">2005</div>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-gray-900 mb-1">Company Founded</h5>
+                      <p className="text-gray-600 text-sm">Shree Karni Chemicals was officially established</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-md">
+                    <div className="bg-red-100 p-3 rounded-lg flex-shrink-0">
+                      <div className="text-red-600 font-bold text-lg">2025</div>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-gray-900 mb-1">Market Leader</h5>
+                      <p className="text-gray-600 text-sm">#1 PCC manufacturer in Rajasthan with global reach</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Achievement Stats */}
+                <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-200">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">50+</div>
+                    <div className="text-xs text-gray-600">Years Combined Experience</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-red-600">500+</div>
+                    <div className="text-xs text-gray-600">Global Clients</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-600">#1</div>
+                    <div className="text-xs text-gray-600">in Rajasthan</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -249,12 +403,12 @@ const About: React.FC = () => {
         {/* Enhanced Mission Statement */}
         <div className="mt-24">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-red-50 via-white to-green-50 p-12 lg:p-16">
-            {/* Background Factory Image */}
+            {/* Dynamic Background Factory Image */}
             <div className="absolute inset-0 opacity-10">
               <img 
-                src="/factory/image from sky-1.jpg"
+                src={factoryImages[currentSlide].src}
                 alt="Factory background"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-all duration-1000"
               />
             </div>
             

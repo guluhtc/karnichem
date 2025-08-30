@@ -123,12 +123,14 @@ const Navigation: React.FC = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Link
-                to="/contact"
+              <a
+                href="https://wa.me/919414095827?text=Hello! I would like to get a quote for PCC products."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-sm"
               >
                 Get Quote
-              </Link>
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -180,13 +182,14 @@ const Navigation: React.FC = () => {
                 )
               ))}
               <div className="pt-6 border-t border-gray-200 space-y-4">
-                <Link
-                  to="/contact"
-                  onClick={() => handleNavClick({ name: 'Contact', href: '/contact', anchor: '#contact', color: 'hover:text-green-600' })}
+                <a
+                  href="https://wa.me/919414095827?text=Hello! I would like to get a quote for PCC products."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block w-full bg-red-600 hover:bg-red-700 text-white px-4 py-4 rounded-lg font-semibold transition-colors text-lg text-center"
                 >
                   Get Quote
-                </Link>
+                </a>
                 
                 {/* Mobile Contact Info */}
                 <div className="pt-4 space-y-3 text-sm text-gray-600">

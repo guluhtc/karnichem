@@ -182,10 +182,22 @@ const HeroSlider: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 lg:gap-5 xl:gap-6 2xl:gap-8 w-full max-w-lg mx-auto mt-6 lg:mt-8">
-              <button className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-2.5 sm:py-3 lg:py-3.5 xl:py-4 2xl:py-5 rounded-lg lg:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group text-sm sm:text-base lg:text-base xl:text-lg min-w-[160px] sm:min-w-[180px] lg:min-w-[200px]">
-                {currentSlideData.buttonText}
-                <ChevronRight className="ml-2 lg:ml-3 w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform" />
-              </button>
+              {currentSlideData.buttonText === "Get a Quote" ? (
+                <a
+                  href="https://wa.me/919414095827?text=Hello! I would like to get a quote for PCC products."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-2.5 sm:py-3 lg:py-3.5 xl:py-4 2xl:py-5 rounded-lg lg:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group text-sm sm:text-base lg:text-base xl:text-lg min-w-[160px] sm:min-w-[180px] lg:min-w-[200px]"
+                >
+                  {currentSlideData.buttonText}
+                  <ChevronRight className="ml-2 lg:ml-3 w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform" />
+                </a>
+              ) : (
+                <button className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-2.5 sm:py-3 lg:py-3.5 xl:py-4 2xl:py-5 rounded-lg lg:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group text-sm sm:text-base lg:text-base xl:text-lg min-w-[160px] sm:min-w-[180px] lg:min-w-[200px]">
+                  {currentSlideData.buttonText}
+                  <ChevronRight className="ml-2 lg:ml-3 w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 group-hover:translate-x-1 transition-transform" />
+                </button>
+              )}
               <button className="w-full sm:w-auto border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 py-2.5 sm:py-3 lg:py-3.5 xl:py-4 2xl:py-5 rounded-lg lg:rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base lg:text-base xl:text-lg min-w-[160px] sm:min-w-[180px] lg:min-w-[200px]">
                 View Brochure
               </button>
