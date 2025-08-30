@@ -80,7 +80,7 @@ const BlogDetailPage: React.FC = () => {
       date: '2025-01-12',
       readTime: '8 min read',
       category: 'Technical',
-      image: '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg',
+      image: '/products/pcc sk-11 (2).jpg',
       tags: ['Applications', 'Industries', 'Technical', 'Guide']
     },
     'quality-control-standards': {
@@ -180,7 +180,7 @@ const BlogDetailPage: React.FC = () => {
       date: '2025-01-05',
       readTime: '6 min read',
       category: 'Pharmaceutical',
-      image: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg',
+      image: '/products/food precipitate calcium carbonate powder.jpg',
       tags: ['Pharmaceutical', 'Quality', 'Regulations', 'Purity']
     },
     'innovation-in-pcc-production': {

@@ -12,64 +12,94 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ isOpen, onClose }) => {
   // All product images from the public/products folder
   const productImages = [
     { 
-      src: '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg', 
+      src: '/products/tooth paste precipilate calcium carbonate powder.jpg', 
       title: 'Dentifrice PCC Grade',
       description: 'High purity calcium carbonate for oral care applications'
     },
     { 
-      src: '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg', 
+      src: '/products/detergent pcc powder.jpg', 
       title: 'Detergent Grade PCC',
       description: 'Superior whiteness grade for cleaning applications'
     },
     { 
-      src: '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg', 
+      src: '/products/food precipitate calcium carbonate powder.jpg', 
       title: 'Food & Pharmaceutical Grade',
       description: 'USP grade for food and pharmaceutical applications'
     },
     { 
-      src: '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg', 
+      src: '/products/paper.jpg', 
       title: 'Paper & Coating Grade',
       description: 'Enhanced brightness for paper and coating applications'
     },
     { 
-      src: '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg', 
+      src: '/products/paint.jpg', 
       title: 'Paint Grade PCC',
       description: 'Optimal particle distribution for paint applications'
     },
     { 
-      src: '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg', 
+      src: '/products/rubber.jpg', 
       title: 'Rubber Grade PCC',
       description: 'High reinforcement grade for rubber applications'
     },
     { 
-      src: '/products/aa7d386e-1f59-4abb-bd0b-9d0f0746068f.jpg', 
-      title: 'Industrial Grade PCC',
-      description: 'General purpose industrial applications'
+      src: '/products/pharma precipilate calcium carbonate powder.jpg', 
+      title: 'Pharmaceutical Grade PCC',
+      description: 'USP/EP compliant grade for pharmaceutical applications'
     },
     { 
-      src: '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg', 
-      title: 'Specialty Grade PCC',
-      description: 'Custom formulations for specific applications'
+      src: '/products/ink pcc powder.jpg', 
+      title: 'Ink Grade PCC',
+      description: 'Specialized grade for ink and printing applications'
     },
     { 
-      src: '/products/0e7f7e2d-2b8d-4203-9846-5200582764e7.jpg', 
-      title: 'High Purity Grade',
-      description: 'Ultra-pure grade for sensitive applications'
+      src: '/products/pvc pipe.jpg', 
+      title: 'PVC Grade PCC',
+      description: 'High performance grade for PVC applications'
     },
     { 
-      src: '/products/115f3623-a37d-4938-bdb6-53b3d6b26f78.jpg', 
+      src: '/products/pcc sk-1.jpg', 
       title: 'Coated Grade PCC',
       description: 'Surface treated for enhanced performance'
     },
     { 
-      src: '/products/159b9fe6-50a7-4392-a8e6-e50635426a0f.jpg', 
-      title: 'Nano Grade PCC',
-      description: 'Ultra-fine particles for advanced applications'
+      src: '/products/pcc sk-11.jpg', 
+      title: 'PCC SK-11 Grade',
+      description: 'High performance coated grade'
     },
     { 
-      src: '/products/3cb1ac27-c51b-4ade-ac17-ea6cad20fc73.jpg', 
-      title: 'Precipitated Calcium Carbonate',
-      description: 'Standard grade for multiple industrial uses'
+      src: '/products/pcc sk-22.jpg', 
+      title: 'PCC SK-22 Grade',
+      description: 'Advanced surface modified grade'
+    },
+    { 
+      src: '/products/pcc sk-33.jpg', 
+      title: 'PCC SK-33 Grade',
+      description: 'Premium coated calcium carbonate'
+    },
+    { 
+      src: '/products/pcc sk-4.jpg', 
+      title: 'PCC SK-4 Grade',
+      description: 'Specialized grade for paint applications'
+    },
+    { 
+      src: '/products/pcc s-11.jpg', 
+      title: 'PCC S-11 Grade',
+      description: 'High purity standard grade'
+    },
+    { 
+      src: '/products/precipitated calcium carbonate sk-2.jpg', 
+      title: 'PCC SK-2 Grade',
+      description: 'Fine particle precipitated grade'
+    },
+    { 
+      src: '/products/prcipitated calcium carbonate s-3.jpg', 
+      title: 'PCC S-3 Grade',
+      description: 'Standard precipitated calcium carbonate'
+    },
+    { 
+      src: '/products/pcc sk-11 (2).jpg', 
+      title: 'PCC SK-11 Premium',
+      description: 'Enhanced version of SK-11 grade'
     }
   ];
 
@@ -96,7 +126,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ isOpen, onClose }) => {
   const downloadCatalog = () => {
     // Create a temporary link to download a sample catalog
     const link = document.createElement('a');
-    link.href = '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg'; // Sample file
+    link.href = '/products/tooth paste precipilate calcium carbonate powder.jpg'; // Sample file
     link.download = 'Shree-Karni-Chemicals-Product-Catalog.pdf';
     link.click();
   };
@@ -140,11 +170,13 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({ isOpen, onClose }) => {
                   className="group relative bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-300"
                   onClick={() => openLightbox(index)}
                 >
-                  <div className="aspect-square">
+                  <div className="aspect-square bg-gray-100">
                     <img
                       src={image.src}
                       alt={image.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                      style={{ objectPosition: 'center center' }}
+                      loading="lazy"
                     />
                   </div>
                   

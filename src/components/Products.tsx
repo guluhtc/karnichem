@@ -15,9 +15,9 @@ const Products: React.FC = () => {
       color: 'bg-red-100 text-red-600',
       borderColor: 'border-red-200 hover:border-red-300',
       images: [
-        '/products/a38ada14-55a1-45df-a81c-a404b6d01e14.jpg',
-        '/products/aa7d386e-1f59-4abb-bd0b-9d0f0746068f.jpg',
-        '/products/115f3623-a37d-4938-bdb6-53b3d6b26f78.jpg'
+        '/products/tooth paste precipilate calcium carbonate powder.jpg',
+        '/products/pcc sk-1.jpg',
+        '/products/pcc sk-11.jpg'
       ],
       category: 'Oral Care',
       purity: '≥ 99.5%',
@@ -31,9 +31,9 @@ const Products: React.FC = () => {
       color: 'bg-green-100 text-green-600',
       borderColor: 'border-green-200 hover:border-green-300',
       images: [
-        '/products/64a87ebc-509e-4acd-9f42-6a63a4f728b4.jpg',
-        '/products/618634fe-1faa-4081-9fd3-05228cc9adb2.jpg',
-        '/products/5eb0b691-75db-444a-8974-034acdff4799.jpg'
+        '/products/detergent pcc powder.jpg',
+        '/products/pcc sk-22.jpg',
+        '/products/pcc sk-33.jpg'
       ],
       category: 'Cleaning Industry',
       purity: '≥ 98.5%',
@@ -47,9 +47,9 @@ const Products: React.FC = () => {
       color: 'bg-red-100 text-red-600',
       borderColor: 'border-red-200 hover:border-red-300',
       images: [
-        '/products/e754a9eb-44ce-4b9e-989d-a0eb9148f714.jpg',
-        '/products/e46650cf-e24d-4836-8ef4-dcbc3a57047f.jpg',
-        '/products/159b9fe6-50a7-4392-a8e6-e50635426a0f.jpg'
+        '/products/food precipitate calcium carbonate powder.jpg',
+        '/products/pharma precipilate calcium carbonate powder.jpg',
+        '/products/pcc s-11.jpg'
       ],
       category: 'Food & Pharmaceutical',
       purity: '≥ 99.8%',
@@ -63,9 +63,9 @@ const Products: React.FC = () => {
       color: 'bg-green-100 text-green-600',
       borderColor: 'border-green-200 hover:border-green-300',
       images: [
-        '/products/b268b458-75e3-42d0-a4e2-df83232d8c59.jpg',
-        '/products/dafa86c1-1629-4b87-9e40-d87b186da61a.jpg',
-        '/products/54459f10-b8d2-4b5a-b5cb-67675cd6cbee.jpg'
+        '/products/paper.jpg',
+        '/products/ink pcc powder.jpg',
+        '/products/prcipitated calcium carbonate s-3.jpg'
       ],
       category: 'Paper & Coatings',
       purity: '≥ 98.0%',
@@ -79,9 +79,9 @@ const Products: React.FC = () => {
       color: 'bg-red-100 text-red-600',
       borderColor: 'border-red-200 hover:border-red-300',
       images: [
-        '/products/489e1a1a-aa7f-46c4-a73d-2dadd7741b52.jpg',
-        '/products/3cb1ac27-c51b-4ade-ac17-ea6cad20fc73.jpg',
-        '/products/085bd13e-4d1a-4c0e-aa2d-dc370dae073e.jpg'
+        '/products/paint.jpg',
+        '/products/pcc sk-4.jpg',
+        '/products/precipitated calcium carbonate sk-2.jpg'
       ],
       category: 'Paint Industry',
       purity: '≥ 98.5%',
@@ -95,11 +95,9 @@ const Products: React.FC = () => {
       color: 'bg-green-100 text-green-600',
       borderColor: 'border-green-200 hover:border-green-300',
       images: [
-        '/products/142f0a7b-7168-4190-93ea-3fda8acf0ab5.jpg',
-        '/products/0e7f7e2d-2b8d-4203-9846-5200582764e7.jpg',
-        '/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg',
-        '/products/909457bd-e035-49ce-9531-89a9211c53c3.jpg',
-        '/products/89b75b34-4da4-4611-807b-5a4136a89c0d.jpg'
+        '/products/rubber.jpg',
+        '/products/pvc pipe.jpg',
+        '/products/pcc sk-11 (2).jpg'
       ],
       category: 'Rubber & Plastics',
       purity: '≥ 98.0%',
@@ -138,11 +136,13 @@ const Products: React.FC = () => {
           {products.map((product, index) => (
             <div key={index} className={`bg-white rounded-xl sm:rounded-2xl border-2 ${product.borderColor} transition-all duration-300 hover:shadow-xl hover:scale-105 group overflow-hidden`}>
               {/* Product Image */}
-              <div className="relative h-48 sm:h-56 overflow-hidden">
+              <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-100">
                 <img 
                   src={product.images[0]}
                   alt={product.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: 'center center' }}
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                 
@@ -217,7 +217,7 @@ const Products: React.FC = () => {
             
             <div className="relative">
               <img 
-                src="/products/088d24b0-bf5f-4e06-bd5d-17a497100fef.jpg"
+                src="/products/pcc sk-11 (2).jpg"
                 alt="Quality testing laboratory"
                 className="rounded-xl shadow-lg w-full h-80 object-cover"
               />
