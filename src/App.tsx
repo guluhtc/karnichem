@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -23,6 +23,8 @@ function App() {
         <Route path="product-gallery" element={<ProductGalleryPage />} />
         <Route path="products/:productId" element={<ProductDetailPage />} />
         <Route path="blog/:blogId" element={<BlogDetailPage />} />
+        {/* Catch-all route for any unmatched paths */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );
