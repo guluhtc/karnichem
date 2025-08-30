@@ -501,11 +501,15 @@ const ProductDetailPage: React.FC = () => {
                   className="group block"
                 >
                   <div className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
-                    <img
-                      src={relatedProduct.image}
-                      alt={relatedProduct.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                    <div className="relative h-48 overflow-hidden bg-gray-100">
+                      <img
+                        src={relatedProduct.images[0]}
+                        alt={relatedProduct.title}
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        style={{ objectPosition: 'center center' }}
+                        loading="lazy"
+                      />
+                    </div>
                     <div className="p-4">
                       <div className="text-xs text-red-600 font-medium mb-1">{relatedProduct.category}</div>
                       <h4 className="font-semibold text-gray-900 group-hover:text-red-600 transition-colors">

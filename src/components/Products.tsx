@@ -133,8 +133,33 @@ const Products: React.FC = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
-          {products.map((product, index) => (
-            <div key={index} className={`bg-white rounded-xl sm:rounded-2xl border-2 ${product.borderColor} transition-all duration-300 hover:shadow-xl hover:scale-105 group overflow-hidden`}>
+          {products.map((product, index) => {
+            // Map product titles to correct IDs that match ProductDetailPage
+            const productIdMap: Record<string, string> = {
+              'Dentifrice PCC': 'dentifrice-pcc',
+              'Detergent PCC': 'detergent-pcc', 
+              'Food/Pharma PCC': 'food-pharma-pcc',
+              'Paper/Coating PCC': 'paper-coating-pcc',
+              'Paint Grade PCC': 'paint-grade-pcc',
+              'Rubber Grade PCC': 'rubber-grade-pcc'
+            };
+            const productId = productIdMap[product.title] || product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            
+            return (
+            <div 
+              key={index} 
+              className={`bg-white rounded-xl sm:rounded-2xl border-2 ${product.borderColor} transition-all duration-300 hover:shadow-xl hover:scale-105 group overflow-hidden cursor-pointer active:scale-100 focus:outline-none focus:ring-4 focus:ring-red-500/20 focus:border-red-500`}
+              onClick={() => navigate(`/products/${productId}`)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate(`/products/${productId}`);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-label={`View details for ${product.title}`}
+            >
               {/* Product Image */}
               <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-100">
                 <img 
@@ -145,6 +170,13 @@ const Products: React.FC = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                    <p className="text-gray-900 font-medium text-sm">View Details</p>
+                  </div>
+                </div>
                 
                 {/* Floating Icon */}
                 <div className={`absolute top-4 right-4 ${product.color} w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -190,7 +222,8 @@ const Products: React.FC = () => {
                 </button>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Technical Specifications */}

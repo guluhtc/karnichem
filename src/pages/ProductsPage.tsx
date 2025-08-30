@@ -121,7 +121,7 @@ const ProductsPage: React.FC = () => {
             <Link
               key={product.id}
               to={`/products/${product.id}`}
-              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95 focus:outline-none focus:ring-4 focus:ring-red-500/20 focus:shadow-2xl"
             >
               {/* Product Image */}
               <div className="relative h-64 overflow-hidden bg-gray-100">
@@ -135,6 +135,13 @@ const ProductsPage: React.FC = () => {
                 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                
+                {/* Click Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                    <p className="text-gray-900 font-medium text-sm">View Product Details</p>
+                  </div>
+                </div>
                 
                 {/* Floating Icon */}
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-3 rounded-lg shadow-lg">
