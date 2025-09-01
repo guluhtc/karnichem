@@ -14,14 +14,14 @@ interface SlideData {
   gradientTo: string;
 }
 
-// KK Folder Images - Choose one of the options below:
+// Homeslide Folder Images - Using images from public/homeslide folder:
 
-// Updated images with homeslider image replacing the first one
-const kkImages = [
-  "/homeslider/download (1).jpeg",
-  "/kk/22.jpg", 
-  "/kk/33.jpg",
-  "/kk/ssss.png"
+// Updated images using all images from public/homeslide folder
+const homeslideImages = [
+  "/homeslide/image (1).png",
+  "/homeslide/33.jpg",
+  "/homeslide/Gemini_Generated_Image_jbbtm4jbbtm4jbbt.png",
+  "/homeslide/Gemini_Generated_Image_soqxjmsoqxjmsoqx.png"
 ];
 
 // Option 2: GitHub raw URLs (uncomment and update with your GitHub info)
@@ -75,7 +75,7 @@ const slideContent = [
 ];
 
 // Create slides by combining images with content
-const slides: SlideData[] = kkImages.map((image, index) => ({
+const slides: SlideData[] = homeslideImages.map((image, index) => ({
   id: index + 1,
   image: image,
   ...slideContent[index % slideContent.length], // Cycle through content if more images than content
